@@ -1,0 +1,57 @@
+Steps to install django framework
+
+1. install python from python website and check if is installed
+
+2. check/install pip
+
+3. install/create the virtual environment
+  example: python -m venv vitrualname
+
+4. Active the virtual environment
+ use: myvirtual\Scripts\activate
+
+5. install Django-verify the Django installation,django-admin --version
+
+6. creating the Django project: django-admin startproject projectname
+
+7. Navigate to your projectname by cd projectname
+
+8.pythonmanage.py runserver
+
+
+Additional steps
+9. render index.html to the browser(any html templates)
+      a) start the project: example: python manage.startapp myapp
+      b)go in the Django project and find settings.py and telling Django i have started another project 
+example: INSTALLED_APPS=[
+'myapp'
+]
+
+c)create the template/myapp directories in myapp project
+    example: myapp/
+                templates/
+                   /myapp
+                    /index.html
+d) create views in your project example in myapp
+          => # Create your views here.
+def index(request):
+    return render(request,'myapp/index.html')
+
+e)create the urls.py in myapp and configure it to know its route in the server
+ from django.urls import path
+
+from . import views
+
+urlpatterns=[
+    path('',views.index,name="index")
+]
+
+f)tell the Django framework in urls.py i have another routes
+          urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('myapp.urls')),
+]
+
+g) run again the project: python manage.py runserver
+
+
